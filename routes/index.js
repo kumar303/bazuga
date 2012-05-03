@@ -1,3 +1,5 @@
+var gravatar = require('gravatar');
+
 module.exports = function(app) {
   /* Filter for checking if a user is authenticated before
    * they can access views that require login
@@ -24,11 +26,13 @@ module.exports = function(app) {
   app.get('/track/:id', function(req, res) {
     // stub
     res.json({
-      'id': 1,
+      'id': req.params.id,
       'artist': 'Autechre',
       'artistImage': '/samples/sample.jpg',
-      'title': 'Clipper',
-      'trackSource': '/samples/sample.ogg'
+      'trackTitle': 'Clipper',
+      'trackSource': '/samples/sample.ogg',
+      'user': gravatar.url(req.session.email),
+      'created': new Date()
     });
   });
 }
