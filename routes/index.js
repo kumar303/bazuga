@@ -48,6 +48,7 @@ module.exports = function(app, io) {
   });
 
   // Get track
+  // TODO: remove when real stuff works
   app.get('/track/:id', function(req, res) {
     // stub
     res.json({

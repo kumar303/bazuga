@@ -1,0 +1,14 @@
+{
+    "name": "Herbie",
+    "default_locale": "en-US",
+    "icons": {
+        "128": "http://localhost:3000/images/herbie.png"
+    },
+    "description": "A music thing",
+    "locales": {},
+    "launch_path": "/",
+    "developer": {
+      "url": "http://localhost:3000/",
+      "name": "Kumar and Jen"
+    }
+}

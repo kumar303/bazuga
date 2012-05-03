@@ -68,6 +68,19 @@ h1 {
     color: #2789a5;
 }
 
+#header {
+    float: right;
+    position: absolute;
+    z-index: 2;
+    right: 0px;
+}
+
+#header a {
+    font-family: 'ImpactLabelRegular';
+    font-size: 18px;
+    color: #111;
+}
+
 #tracks {
     clear: both;
     float: left;
@@ -84,9 +97,12 @@ h1 {
     background-color: #eee;
     padding-top: 10px;
     padding-right: 10px;
-    width: 80%;
+    max-width: 700px;
+    min-width: 200px;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #tracks.list li {
