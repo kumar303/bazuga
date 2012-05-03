@@ -42,7 +42,7 @@ $(function() {
     }
   };
 
-  $.get('/track/list', function() {
+  $.get('/tracks/list', function() {
     console.log('received track list');
   });
 
@@ -90,5 +90,3 @@ var mozApp = (function() {
       manifest: manifestURL
   };
 })();
-
-mozApp.install();
