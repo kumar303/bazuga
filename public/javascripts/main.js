@@ -42,8 +42,8 @@ $(function() {
     }
   };
 
-  $.get('/track/1', function(data) {
-    updateTrack(data);
+  $.get('/track/list', function() {
+    console.log('received track list');
   });
 
   socket.on('connect', function () {

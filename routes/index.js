@@ -45,19 +45,4 @@ module.exports = function(app, io) {
       }
     );
   });
-
-  // Get track
-  // TODO: remove when real stuff works
-  app.get('/track/:id', function(req, res) {
-    // stub
-    res.json({
-      'id': req.params.id,
-      'artist': 'Autechre',
-      'artistImage': '/samples/sample.jpg',
-      'trackTitle': 'Clipper',
-      'trackSource': '/samples/sample.ogg',
-      'user': gravatar.url(req.session.email),
-      'created': new Date()
-    });
-  });
 }
