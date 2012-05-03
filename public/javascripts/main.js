@@ -13,9 +13,13 @@ $(function() {
   });
 
   $('#tracks.list').on('click', 'li', function() {
+    var self = $(this);
     var audio = document.getElementsByTagName('audio')[0];
     audio.pause();
-    $('audio').attr('src', $(this).data('track'));
+
+    self.parent().find('li').removeClass('listening');
+    self.addClass('listening');
+    $('audio').attr('src', self.data('track'));
     audio.play();
   });
 
@@ -86,3 +90,5 @@ var mozApp = (function() {
       manifest: manifestURL
   };
 })();
+
+mozApp.install();
