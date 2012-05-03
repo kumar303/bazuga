@@ -1,0 +1,22 @@
+!!!
+html
+  head
+    title= title
+    meta(charset='utf-8')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+  body
+    #header
+      if session.email
+        a(href='/logout') Logout
+      else
+        a(href='#', id='login') Sign in
+        form(method='post', action='/login', class='login')
+          input(type='hidden', name='bid_assertion', value='1')
+
+    block content
+
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
+    script(src='https://browserid.org/include.js', type='text/javascript')
+    script(src='/socket.io/socket.io.js')
+    script(src='../javascripts/main.js')
