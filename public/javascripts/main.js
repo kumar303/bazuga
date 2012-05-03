@@ -13,21 +13,23 @@ $(function() {
   });
 
   $('#tracks.list').on('click', 'li', function() {
-    document.location.href = $(this).data('src');
+    var audio = document.getElementsByTagName('audio')[0];
+    audio.pause();
+    $('audio').attr('src', $(this).data('track'));
+    audio.play();
   });
 
   var updateTrack = function(data) {
-    var track = $('<li data-src="/track/detail/' + data.id + '"><div class="track-info">' +
+    var track = $('<li data-track="' + data.trackSource + '" data-src="/track/detail/' + data.id + '">' +
+      '<div class="track-info">' +
       '<div class="image-wrapper"><img src=""></div><div class="details"><span class="artist-name">' +
       '</span><span class="track-title"></span></div></div><div class="user-info"><img src="">' +
-      '<span class="posted"></span><audio controls="controls" preload="none" autobuffer>' +
-      '<source src="" type="audio/ogg" /></audio></div></li>');
+      '<span class="posted"></span></div></li>');
     track.find('.track-info img').attr('src', data.artistImage);
     track.find('.track-info .artist-name').text('Artist: ' + data.artist);
     track.find('.track-info .track-title').text('Title: ' + data.trackTitle);
     track.find('.user-info img').attr('src', data.user);
     track.find('.user-info .posted').text('Posted on: ' + data.created);
-    track.find('source').attr('src', data.trackSource);
 
     trackItems.prepend(track);
 
@@ -47,40 +49,40 @@ $(function() {
       }
     });
   });
-
-  var mozApp = (function() {
-    var manLink = document.querySelector('link[rel="app-manifest"]'),
-        manifestURL = manLink.getAttribute('href');
-
-    var self = false;
-
-    var selfReq = navigator.mozApps.getSelf();
-    selfReq.onsuccess = function() {
-        self = selfReq.result;
-    };
-
-    function isRunning() {
-        return !!self;
-    }
-    function install(success, error) {
-        var r = navigator.mozApps.install(manifestURL);
-        r.onsuccess = success;
-        r.onerror = error;
-        r.addEventListener('error', function() {
-            alert('Installation Failed with Error: ' + this.error.name);
-        });
-        return r;
-    }
-    function uninstall() {
-        if (self)
-            return self.uninstall();
-    }
-
-    return {
-        isRunning: isRunning,
-        install: install,
-        uninstall: uninstall,
-        manifest: manifestURL
-    };
-  })();
 });
+
+var mozApp = (function() {
+  var manLink = document.querySelector('link[rel="app-manifest"]'),
+      manifestURL = manLink.getAttribute('href');
+
+  var self = false;
+
+  var selfReq = navigator.mozApps.getSelf();
+  selfReq.onsuccess = function() {
+      self = selfReq.result;
+  };
+
+  function isRunning() {
+      return !!self;
+  }
+  function install(success, error) {
+      var r = navigator.mozApps.install(manifestURL);
+      r.onsuccess = success;
+      r.onerror = error;
+      r.addEventListener('error', function() {
+          alert('Installation Failed with Error: ' + this.error.name);
+      });
+      return r;
+  }
+  function uninstall() {
+      if (self)
+          return self.uninstall();
+  }
+
+  return {
+      isRunning: isRunning,
+      install: install,
+      uninstall: uninstall,
+      manifest: manifestURL
+  };
+})();
