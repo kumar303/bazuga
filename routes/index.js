@@ -26,7 +26,7 @@ module.exports = function(app, io) {
               'artistImage': jsonResp.album_art_url || '/images/herbie.png',
               'album': jsonResp.album,
               'trackTitle': jsonResp.track,
-              'trackSource': jsonResp.s3_ogg_url,
+              'trackSource': jsonResp.s3_ogg_url || '/samples/sample.ogg',
               'user': gravatar.url(req.session.email),
               'created': new Date()
             }
