@@ -42,8 +42,11 @@ $(function() {
     }
   };
 
-  $.get('/tracks/list', function() {
+  $.get('/tracks/list', function(data) {
     console.log('received track list');
+      for (var i = 0; i < data.tracks.length; i ++) {
+        updateTrack(data.tracks[i].track);
+      }
   });
 
   socket.on('connect', function () {

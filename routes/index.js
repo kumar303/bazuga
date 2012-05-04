@@ -9,7 +9,7 @@ module.exports = function(app, io) {
 
   // Add track
   app.get('/tracks/list', function(req, res) {
-    request.post('http://localhost:8000/en-US/songs?email=' + escape(req.session.email),
+    request.get('http://localhost:8000/en-US/songs?email=' + escape(req.session.email),
       function(err, resp, body) {
         var tracks = [];
         var email = false;
@@ -17,31 +17,34 @@ module.exports = function(app, io) {
         if (err) {
           return callback(err);
         }
-
+        console.log(body);
         try {
           var jsonResp = JSON.parse(body);
-          var track = {
-            track: {
-              'artist': jsonResp.artist,
-              'artistImage': jsonResp.album_art_url || '/images/herbie.png',
-              'album': jsonResp.album,
-              'trackTitle': jsonResp.track,
-              'trackSource': jsonResp.s3_ogg_url || '/samples/sample.ogg',
-              'user': gravatar.url(req.session.email),
-              'created': new Date()
-            }
-          };
+          console.log(jsonResp.songs.length);
+          for (var i = 0; i < jsonResp.songs.length; i++ ) {
+              var track = {
+                track: {
+                  'artist': jsonResp.songs[i].artist,
+                  'artistImage': jsonResp.songs[i].album_art_url || '/images/herbie.png',
+                  'album': jsonResp.songs[i].album,
+                  'trackTitle': jsonResp.songs[i].track,
+                  'trackSource': jsonResp.songs[i].s3_ogg_url || '/samples/sample.ogg',
+                  'user': gravatar.url(req.session.email),
+                  'created': new Date()
+                }
+              };
+console.log(jsonResp.songs[i].artist);
 
-          tracks.push(track);
+              tracks.push(track);
+          }
 
-          io.sockets.emit('message', tracks);
+          // io.socikets.emit('message', tracks);
 
-          res.json({ status: 200 });
+          res.json({ tracks: tracks });
         } catch (err) {
-          return callback(err);
+//return callback(err);
         }
 
-      return callback(null, email);
       }
     );
   });
