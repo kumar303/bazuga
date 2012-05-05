@@ -13,7 +13,7 @@ module.exports = function(app) {
   app.get('/tracks/list', function(req, res) {
     request.get(TRACK_URL + '?email=' + escape(req.session.email),
       function(err, resp, body) {
-        trackMgmt.getAll(req, function(err, tracks) {
+        trackMgmt.getAll(req, body, function(err, tracks) {
           res.json({ tracks: tracks });
         });
       }
