@@ -1,7 +1,5 @@
 $(function() {
   var trackItems = $('#tracks');
-  var socket = io.connect(location.protocol + '//' + location.hostname +
-    (location.port ? ':' + location.port : ''));
 
   $('#login').click(function() {
     navigator.id.getVerifiedEmail(function(assertion) {
@@ -43,18 +41,9 @@ $(function() {
   };
 
   $.get('/tracks/list', function(data) {
-    console.log('received track list');
-      for (var i = 0; i < data.tracks.length; i ++) {
-        updateTrack(data.tracks[i].track);
-      }
-  });
-
-  socket.on('connect', function () {
-    socket.on('message', function (data) {
-      for (var i = 0; i < data.length; i ++) {
-        updateTrack(data[i].track);
-      }
-    });
+    for (var i = 0; i < data.tracks.length; i ++) {
+      updateTrack(data.tracks[i].track);
+    }
   });
 });
 

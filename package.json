@@ -12,7 +12,6 @@
     "express": "2.5.8",
     "gravatar": "1.0.6",
     "request": "2.9.153",
-    "socket.io": "0.9.2",
     "jade": ">= 0.25.0"
   }
 }

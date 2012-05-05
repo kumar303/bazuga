@@ -1,50 +1,21 @@
-var gravatar = require('gravatar');
-var request = require('request');
+const TRACK_URL = 'http://localhost:8000/en-US/songs';
 
-module.exports = function(app, io) {
-  // Home/main
+var request = require('request');
+var trackMgmt = require('../lib/track_mgmt');
+
+module.exports = function(app) {
+  // Main track page
   app.get('/', function(req, res) {
     res.render('index', { title: 'Herbie' });
   });
 
-  // Add track
+  // Get track list
   app.get('/tracks/list', function(req, res) {
-    request.get('http://localhost:8000/en-US/songs?email=' + escape(req.session.email),
+    request.get(TRACK_URL + '?email=' + escape(req.session.email),
       function(err, resp, body) {
-        var tracks = [];
-        var email = false;
-
-        if (err) {
-          return callback(err);
-        }
-        console.log(body);
-        try {
-          var jsonResp = JSON.parse(body);
-          console.log(jsonResp.songs.length);
-          for (var i = 0; i < jsonResp.songs.length; i++ ) {
-              var track = {
-                track: {
-                  'artist': jsonResp.songs[i].artist,
-                  'artistImage': jsonResp.songs[i].album_art_url || '/images/herbie.png',
-                  'album': jsonResp.songs[i].album,
-                  'trackTitle': jsonResp.songs[i].track,
-                  'trackSource': jsonResp.songs[i].s3_ogg_url || '/samples/sample.ogg',
-                  'user': gravatar.url(req.session.email),
-                  'created': new Date()
-                }
-              };
-console.log(jsonResp.songs[i].artist);
-
-              tracks.push(track);
-          }
-
-          // io.socikets.emit('message', tracks);
-
+        trackMgmt.getAll(req, function(err, tracks) {
           res.json({ tracks: tracks });
-        } catch (err) {
-//return callback(err);
-        }
-
+        });
       }
     );
   });

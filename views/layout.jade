@@ -11,7 +11,6 @@ html
       if session.email
         a(href='/logout') Logout
       else
-        a(href='javascript:mozApp') Install App
         a(href='#', id='login') Sign in
         form(method='post', action='/login', class='login')
           input(type='hidden', name='bid_assertion', value='1')
