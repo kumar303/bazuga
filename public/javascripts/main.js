@@ -23,10 +23,9 @@ $(function() {
 
   var updateTrack = function(data) {
     var track = $('<li data-track="' + data.trackSource + '" data-src="/track/detail/' + data.id + '">' +
-      '<div class="track-info">' +
-      '<div class="image-wrapper"><img src=""></div><div class="details"><span class="artist-name">' +
-      '</span><span class="track-title"></span></div></div><div class="user-info"><img src="">' +
-      '<span class="posted"></span></div></li>');
+      '<div class="track-info"><div class="image-wrapper"><img src=""></div><div class="details">' +
+      '<span class="artist-name"></span><span class="track-title"></span></div></div>' +
+      '<div class="user-info"><img src=""><span class="posted"></span></div></li>');
     track.find('.track-info img').attr('src', data.artistImage);
     track.find('.track-info .artist-name').text('Artist: ' + data.artist);
     track.find('.track-info .track-title').text('Title: ' + data.trackTitle);
