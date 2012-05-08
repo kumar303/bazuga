@@ -56,8 +56,15 @@ table {
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'LeagueGothic';
+    src: url('../fonts/League_Gothic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'LeagueGothic', sans-serif;
 }
 
 h1 {
@@ -68,15 +75,19 @@ h1 {
     color: #2789a5;
 }
 
+a {
+    text-decoration: none;
+}
+
 #header {
-    float: right;
     position: absolute;
     z-index: 2;
-    right: 0px;
+    right: 10px;
+    top: 5px;
 }
 
 #header a {
-    font-family: 'ImpactLabelRegular';
+    font-family: 'LeagueGothic';
     font-size: 22px;
     color: #111;
 }
@@ -84,26 +95,21 @@ h1 {
 #tracks {
     clear: both;
     float: left;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    font-size: 20px;
+    margin: 40px 0px 30px 0px;
+    position: relative;
     width: 100%;
 }
 
 #tracks li {
     float: left;
     clear: both;
-    margin: 10px;
-    margin-bottom: 0px;
-    margin-left: 0px;
+    margin-bottom: 5px;
     background-color: #eee;
-    padding-top: 10px;
-    padding-right: 10px;
-    max-width: 700px;
-    min-width: 80%;
-    border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
+    padding: 10px 0px 0px 0px;
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 100%;
 }
 
 #tracks.list li {
@@ -125,8 +131,8 @@ h1 {
 
 #tracks li .track-info .image-wrapper {
     display: block;
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     float: left;
     margin-right: 15px;
     margin-bottom: 10px;
@@ -135,7 +141,7 @@ h1 {
 
 #tracks li .track-info img {
     display: block;
-    width: 120px;
+    width: 80px;
     float: left;
     margin-right: 15px;
     margin-bottom: 10px;
@@ -187,18 +193,24 @@ h1 {
     display: block;
     height: 60px;
     opacity: 0.8;
-    position: absolute;
+    position: fixed;
     width: 100%;
 }
 
 #playtoggle {
     background-image: url('../images/play.png');
+    background-position: 0px;
     background-repeat: no-repeat;
+    cursor: pointer;
     height: 50px;
     left: 10px;
     position: absolute;
     top: 5px;
     width: 50px;
+}
+
+#playtoggle.playing {
+    background-position: -50px;
 }
 
 #gutter {
@@ -207,7 +219,7 @@ h1 {
     height: 15px;
     left: 80px;
     position: absolute;
-    top: 19px;
+    top: 21px;
     width: 75%;
 }
 
@@ -225,8 +237,9 @@ h1 {
 #timeleft {
     color: #fff;
     display: block;
-    font-size: 15px;
+    font-size: 28px;
+    letter-spacing: 1px;
     position: absolute;
-    right: -50px;
-    top: 1px;
+    right: -80px;
+    top: -8px;
 }

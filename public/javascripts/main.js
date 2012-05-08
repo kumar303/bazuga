@@ -10,27 +10,13 @@ $(function() {
     });
   });
 
-  $('#tracks.list').on('click', 'li', function() {
-    var self = $(this);
-    var audio = document.getElementsByTagName('audio')[0];
-    audio.pause();
-
-    self.parent().find('li').removeClass('listening');
-    self.addClass('listening');
-    $('audio').attr('src', self.data('track'));
-    audio.play();
-  });
-
   var updateTrack = function(data) {
     var track = $('<li data-track="' + data.trackSource + '" data-src="/track/detail/' + data.id + '">' +
       '<div class="track-info"><div class="image-wrapper"><img src=""></div><div class="details">' +
-      '<span class="artist-name"></span><span class="track-title"></span></div></div>' +
-      '<div class="user-info"><img src=""><span class="posted"></span></div></li>');
+      '<span class="artist-name"></span><span class="track-title"></span></div></div></li>');
     track.find('.track-info img').attr('src', data.artistImage);
-    track.find('.track-info .artist-name').text('Artist: ' + data.artist);
-    track.find('.track-info .track-title').text('Title: ' + data.trackTitle);
-    track.find('.user-info img').attr('src', data.user);
-    track.find('.user-info .posted').text('Posted on: ' + data.created);
+    track.find('.track-info .artist-name').text(data.artist);
+    track.find('.track-info .track-title').text(data.trackTitle);
 
     trackItems.prepend(track);
 

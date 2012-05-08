@@ -1,4 +1,4 @@
-if (!!document.createElement('audio').canPlayType) {
+if (document.createElement('audio').canPlayType) {
   var player = $('<div id="player"><span id="playtoggle"></span><span id="gutter">' +
     '<span id="handle" class="ui-slider-handle"></span><span id="timeleft"></span>' +
     '</span><audio><source src="" type="audio/ogg"></audio></audio></div>');
@@ -6,11 +6,12 @@ if (!!document.createElement('audio').canPlayType) {
 }
 
 var audio = $('#player audio').get(0);
-var loadingIndicator = $('#player #loading');
-var positionIndicator = $('#player #handle');
-var timeleft = $('#player #timeleft');
+var loadingIndicator = $('#loading');
+var positionIndicator = $('#handle');
+var timeleft = $('#timeleft');
 var manualSeek = false;
 var loaded = false;
+var trackLoaded = false;
    
 if ((audio.buffered !== undefined) && (audio.buffered.length !== 0)) {
   $(audio).bind('progress', function() {
@@ -51,6 +52,14 @@ $(audio).bind('timeupdate', function() {
       }
     });
   }
+
+  if (pos === 100) {
+    timeLeft = '';
+    // Let's go to the next track if it is available
+    if ($('li.listening').next()) {
+      $('li.listening').next().click();
+    }
+  }
 });
 
 $(audio).bind('play', function() {
@@ -60,9 +69,25 @@ $(audio).bind('play', function() {
 });  
    
 $("#playtoggle").click(function() {
-  if (audio.paused) { 
+  if (audio.paused) {
+    if (!trackLoaded) {
+      $('li:first-child').click().addClass('listening');
+    }
     audio.play();
   } else { 
+    $('li').removeClass('listening');
     audio.pause();
-  }    
+  }  
+});
+
+$('#tracks.list').on('click', 'li', function() {
+  var self = $(this);
+  var audio = document.getElementsByTagName('audio')[0];
+  audio.pause();
+
+  self.parent().find('li').removeClass('listening');
+  self.addClass('listening');
+  $('audio').attr('src', self.data('track'));
+  trackLoaded = true;
+  audio.play();
 });
