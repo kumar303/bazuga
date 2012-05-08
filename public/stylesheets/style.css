@@ -168,23 +168,6 @@ a {
     color: #466063;
 }
 
-#tracks li .user-info {
-    float: left;
-    width: 70%;
-    margin-top: 19px;
-}
-
-#tracks li .user, #tracks li .user-info img {
-    float: left;
-    display: block;
-    width: 41px;
-}
-
-#tracks li .posted {
-    color: #888;
-    margin-left: 10px;
-}
-
 /* Audio Player */
 
 #player {
@@ -207,6 +190,10 @@ a {
     position: absolute;
     top: 5px;
     width: 50px;
+}
+
+#playtoggle:hover {
+    opacity: 0.7;
 }
 
 #playtoggle.playing {
@@ -241,5 +228,17 @@ a {
     letter-spacing: 1px;
     position: absolute;
     right: -80px;
-    top: -8px;
+    top: -9px;
+}
+
+@media only screen and (max-width: 600px) {
+    #gutter {
+        width: 65%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    #gutter {
+        width: 40%;
+    }
 }
