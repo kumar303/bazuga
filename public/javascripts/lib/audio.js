@@ -27,8 +27,10 @@ $(audio).bind('timeupdate', function() {
   var pos = (audio.currentTime / audio.duration) * 100;
   var mins = Math.floor(rem / 60, 10);
   var secs = rem - mins * 60;
-     
-  timeleft.text('-' + mins + ':' + (secs > 9 ? secs : '0' + secs));
+
+  if (!isNaN(mins)) {
+    timeleft.text('-' + mins + ':' + (secs > 9 ? secs : '0' + secs));
+  }
   if (!manualSeek) {
     positionIndicator.css({ left: pos + '%' });
   }
