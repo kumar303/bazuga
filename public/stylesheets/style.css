@@ -80,16 +80,23 @@ a {
 }
 
 #header {
-    position: absolute;
+    background-color: #111;
+    opacity: 0.85;
+    padding: 5px 5px 10px 5px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
     z-index: 2;
-    right: 10px;
-    top: 5px;
 }
 
 #header a {
+    color: #fff;
+    display: block;
+    float: right;
+    margin-right: 20px;
     font-family: 'LeagueGothic';
-    font-size: 22px;
-    color: #111;
+    font-size: 30px;
+    text-transform: uppercase;
 }
 
 #tracks {
@@ -107,6 +114,7 @@ a {
     margin-bottom: 5px;
     background-color: #eee;
     padding: 10px 0px 0px 0px;
+    position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
@@ -152,18 +160,23 @@ a {
 }
 
 #tracks li .artist-name {
-    font-size: 25px;
-    color: #2789a5;
+    font-size: 33px;
+    color: #111;
     display: block;
     float: left;
-    margin-bottom: 10px;
+    line-height: 33px;
+    margin-bottom: 22px;
+    text-transform: uppercase;
+}
+
+#tracks li.listening .artist-name {
+    color: #444;
 }
 
 #tracks li .track-title {
     display: block;
     clear: both;
     font-size: 30px;
-    line-height: 25px;
     float: left;
     color: #466063;
 }
@@ -175,7 +188,7 @@ a {
     bottom: 0px;
     display: block;
     height: 60px;
-    opacity: 0.8;
+    opacity: 0.85;
     position: fixed;
     width: 100%;
 }
