@@ -16,24 +16,28 @@ var qs = { assertion: '1a2b3c', audience: siteUrl };
 describe('login', function() {
   describe('POST /verify', function() {
     it('logs the user in when they have good credentials', function() {
-    var scope = nock(authUrl).post('', qs).reply(200, { status: 'okay', email: 'herbie@hanc.org' });
+      var scope = nock(authUrl)
+        .post('', qs)
+        .reply(200, { status: 'okay', email: 'herbie@hanc.org' });
 
-    var params = {
-      body: { bid_assertion: qs.assertion }
-    };
+      var params = {
+        body: { bid_assertion: qs.assertion }
+      };
 
-    var authResp = auth.verify(params, settings, function(error, email) { });
+      var authResp = auth.verify(params, settings, function(error, email) { });
       authResp.should.equal(true);
     });
 
     it('does not log the user in if they have bad credentials', function() {
-    var scope = nock(authUrl).post('', qs).reply(500, { status: 'invalid' });
+      var scope = nock(authUrl)
+        .post('', qs)
+        .reply(500, { status: 'invalid' });
 
-    var params = {
-      body: { }
-    };
+      var params = {
+        body: { }
+      };
 
-    var authResp = auth.verify(params, settings, function(error, email) { });
+      var authResp = auth.verify(params, settings, function(error, email) { });
       authResp.should.equal(false);
     });
   });
