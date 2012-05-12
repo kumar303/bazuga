@@ -18,7 +18,7 @@ describe('trackMgmt', function() {
           album_art_url: 'http://test.com/223.jpg',
           album: 'Selected Ambient Works Vol. 2',
           track: 'Blue Calx',
-          s3_ogg_url: 'http://test.com/223.ogg'
+          s3_urls: {ogg: 'http://test.com/223.ogg'}
         }]
       };
 
