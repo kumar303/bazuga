@@ -13,7 +13,8 @@ $(function() {
   var updateTrack = function(data) {
     var track = $('<li data-track="' + data.trackSource + '" data-src="/track/detail/' + data.id + '">' +
       '<div class="track-info"><div class="image-wrapper"><img src=""></div><div class="details">' +
-      '<span class="artist-name"></span><span class="track-title"></span></div></div></li>');
+      '<span class="artist-name"></span><span class="track-title"></span></div></div><a href="#" ' +
+      'class="track-details">&gt;</a></li>');
     track.find('.track-info img').attr('src', data.artistImage);
     track.find('.track-info .artist-name').text(data.artist);
     track.find('.track-info .track-title').text(data.trackTitle);

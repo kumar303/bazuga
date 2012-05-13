@@ -6,10 +6,11 @@ var settings = {};
 settings.options = {
   domain: 'http://localhost',
   port: 3000,
+  authPort: 3000,
   authUrl: 'https://browserid.org'
 };
 
-var authUrl = settings.options.authUrl + '/verify';
+var authUrl = '/verify';
 var siteUrl = settings.options.domain + ':' + settings.options.port;
 var qs = { assertion: '1a2b3c', audience: siteUrl };
 

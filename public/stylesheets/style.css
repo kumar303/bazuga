@@ -79,6 +79,14 @@ a {
     text-decoration: none;
 }
 
+#slide-0, #slide-1 {
+    width: 100%;
+}
+
+#slide-1 {
+    display: none;
+}
+
 #header {
     background-color: #111;
     opacity: 0.85;
@@ -125,16 +133,16 @@ a {
 }
 
 #tracks.list li.listening {
-    background-color: #ccc;
+    background-color: #d5e3ee;
     cursor: default;
 }
 
 #tracks.list li:hover {
-    background-color: #e5ff6d;
+    background-color: #b0deff;
 }
 
 #tracks.list li.listening:hover {
-    background-color: #ccc;
+    background-color: #d5e3ee;
 }
 
 #tracks li .track-info .image-wrapper {
@@ -160,8 +168,8 @@ a {
 }
 
 #tracks li .artist-name {
-    font-size: 33px;
-    color: #111;
+    font-size: 28px;
+    color: #222;
     display: block;
     float: left;
     line-height: 33px;
@@ -176,9 +184,24 @@ a {
 #tracks li .track-title {
     display: block;
     clear: both;
-    font-size: 30px;
+    font-size: 25px;
     float: left;
     color: #466063;
+}
+
+#tracks li .track-details {
+    background-image: url('/images/details.png');
+    background-repeat: no-repeat;
+    display: block;
+    height: 80px;
+    position: absolute;
+    right: 10px;
+    text-indent: -9999px;
+    width: 60px;
+}
+
+#tracks li .track-details:hover {
+    background-position: -58px;
 }
 
 /* Audio Player */
