@@ -50,27 +50,19 @@ table {
 /* Main styles */
 
 @font-face {
-    font-family: 'ImpactLabelRegular';
-    src: url('../fonts/Impact_Label-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'LeagueGothic';
-    src: url('../fonts/League_Gothic-webfont.woff') format('woff');
+    font-family: 'Metrophobic';
+    src: url('../fonts/Metrophobic-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 body {
-    font-family: 'LeagueGothic', sans-serif;
+    font-family: 'Metrophobic', sans-serif;
 }
 
 h1 {
     clear: both;
     float: left;
-    font-family: 'ImpactLabelRegular';
     font-size: 35px;
     color: #2789a5;
 }
@@ -84,13 +76,67 @@ a {
 }
 
 #slide-1 {
+    background-color: #f1f1f1;
     display: none;
+    float: left;
+    padding: 60px 20px 20px 20px;
+}
+
+#slide-1 h2 {
+    font-size: 38px;
+    margin-bottom: 20px;
+}
+
+#slide-1 h3 {
+    color: #70777d;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+#slide-1 h2, #tracks li .artist-name {
+    font-size: 32px;
+    color: #70777d;
+    text-shadow: #fff 0px 1px 0px;
+    text-transform: uppercase;
+}
+
+.info {
+    float: left;
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 80%;
+}
+
+.info img {
+    display: block;
+    float: left;
+    margin-bottom: 100px;
+    margin-right: 20px;
+    max-height: 128px;
+    max-width: 128px;
+}
+
+a.back {
+    background-image: url('/images/back.png');
+    background-position: -58px;
+    display: block;
+    float: left;
+    font-size: 1px;
+    height: 80px;
+    text-indent: -9999px;
+    width: 60px;
+}
+
+a.back:hover {
+    background-position: 0px;
 }
 
 #header {
-    background-color: #111;
-    opacity: 0.85;
-    padding: 5px 5px 10px 5px;
+    background: -moz-linear-gradient(center top , #eee, #fff) repeat scroll 50% 50% transparent;
+    box-shadow: #aaa 0px 0px 5px;
+    height: 30px;
+    opacity: 0.9;
+    padding: 5px;
     position: fixed;
     top: 0px;
     width: 100%;
@@ -98,12 +144,12 @@ a {
 }
 
 #header a {
-    color: #fff;
+    color: #7f878d;
     display: block;
     float: right;
     margin-right: 20px;
-    font-family: 'LeagueGothic';
-    font-size: 30px;
+    padding-top: 5px;
+    font-size: 20px;
     text-transform: uppercase;
 }
 
@@ -119,8 +165,9 @@ a {
 #tracks li {
     float: left;
     clear: both;
-    margin-bottom: 5px;
+    margin-bottom: 1px;
     background-color: #eee;
+    border-bottom: 1px solid #ccc;
     padding: 10px 0px 0px 0px;
     position: relative;
     overflow: hidden;
@@ -133,31 +180,34 @@ a {
 }
 
 #tracks.list li.listening {
-    background-color: #d5e3ee;
+    background-color: #fff;
     cursor: default;
 }
 
 #tracks.list li:hover {
-    background-color: #b0deff;
+    background-color: #cbd4dc;
+}
+
+#tracks.list li:hover .artist-name, #tracks.list li:hover .track-title {
+    color: #555;
 }
 
 #tracks.list li.listening:hover {
-    background-color: #d5e3ee;
+    background-color: #fff;
 }
 
 #tracks li .track-info .image-wrapper {
     display: block;
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     float: left;
     margin-right: 15px;
     margin-bottom: 10px;
-    background-color: #fff;
 }
 
 #tracks li .track-info img {
     display: block;
-    width: 80px;
+    width: 70px;
     float: left;
     margin-right: 15px;
     margin-bottom: 10px;
@@ -168,13 +218,11 @@ a {
 }
 
 #tracks li .artist-name {
-    font-size: 28px;
-    color: #222;
     display: block;
     float: left;
-    line-height: 33px;
-    margin-bottom: 22px;
-    text-transform: uppercase;
+    line-height: 38px;
+    margin-bottom: 15px;
+    margin-top: -5px;
 }
 
 #tracks li.listening .artist-name {
@@ -184,18 +232,20 @@ a {
 #tracks li .track-title {
     display: block;
     clear: both;
-    font-size: 25px;
+    font-size: 22px;
     float: left;
-    color: #466063;
+    color: #7f878d;
 }
 
 #tracks li .track-details {
     background-image: url('/images/details.png');
     background-repeat: no-repeat;
     display: block;
+    float: right;
     height: 80px;
-    position: absolute;
-    right: 10px;
+    margin-right: 10px;
+    margin-top: -5px;
+    position: relative;
     text-indent: -9999px;
     width: 60px;
 }
@@ -207,11 +257,12 @@ a {
 /* Audio Player */
 
 #player {
-    background-color: #111;
+    background: -moz-linear-gradient(center top , #eee, #999) repeat scroll 50% 50% transparent;
+    box-shadow: #aaa 0px 0px 5px;
     bottom: 0px;
     display: block;
     height: 60px;
-    opacity: 0.85;
+    opacity: 0.95;
     position: fixed;
     width: 100%;
 }
@@ -222,14 +273,14 @@ a {
     background-repeat: no-repeat;
     cursor: pointer;
     height: 50px;
-    left: 10px;
+    left: 13px;
     position: absolute;
     top: 5px;
     width: 50px;
 }
 
 #playtoggle:hover {
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 #playtoggle.playing {
@@ -237,8 +288,8 @@ a {
 }
 
 #gutter {
-    background: -moz-linear-gradient(center top , #222, #444) repeat scroll 0% 0% transparent;
-    border-radius: 3px;
+    background: -moz-linear-gradient(center top , #51565a, #6f757a) repeat scroll 0% 0% transparent;
+    border-radius: 2px;
     height: 15px;
     left: 80px;
     position: absolute;
@@ -247,18 +298,19 @@ a {
 }
 
 #handle {
-    background-color: #888;
-    border-radius: 20px;
+    background-color: #222;
+    border-radius: 2px;
+    box-shadow: #111 2px 2px 3px inset;
     height: 15px;
     left: 0px;
-    margin-left: -11px;
+    margin-left: -10px;
     position: absolute;
     top: 0px;
-    width: 15px;
+    width: 17px;
 }
 
 #timeleft {
-    color: #fff;
+    color: #52575b;
     display: block;
     font-size: 28px;
     letter-spacing: 1px;

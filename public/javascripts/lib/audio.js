@@ -1,3 +1,6 @@
+var playlistSlide = $('#slide-0');
+var trackDetailsSlide = $('#slide-1');
+
 if (document.createElement('audio').canPlayType) {
   var player = $('<div id="player"><span id="playtoggle"></span><span id="gutter">' +
     '<span id="handle" class="ui-slider-handle"></span><span id="timeleft"></span>' +
@@ -82,14 +85,30 @@ $("#playtoggle").click(function() {
   }  
 });
 
-$('#tracks.list').on('click', 'li', function() {
+$('#tracks.list').on('click', 'li', function(ev) {
   var self = $(this);
-  var audio = document.getElementsByTagName('audio')[0];
-  audio.pause();
 
-  self.parent().find('li').removeClass('listening');
-  self.addClass('listening');
-  $('audio').attr('src', self.data('track'));
-  trackLoaded = true;
-  audio.play();
+  if (ev.target.nodeName !== 'SPAN') {
+    var audio = document.getElementsByTagName('audio')[0];
+    audio.pause();
+
+    self.parent().find('li').removeClass('listening');
+    self.addClass('listening');
+    $('audio').attr('src', self.data('track'));
+    trackLoaded = true;
+    audio.play();
+
+  } else {
+    trackDetailsSlide.find('h2 span').text(' ' + self.find('.details .artist-name').text());
+    trackDetailsSlide.find('h3.title span').text(' ' + self.find('.details .track-title').text());
+    trackDetailsSlide.find('h3.album span').text(' ' + self.data('album'));
+    trackDetailsSlide.find('img').attr('src', self.find('.image-wrapper img').attr('src'));
+    playlistSlide.hide();
+    trackDetailsSlide.show();
+  }
+});
+
+$('a.back').click(function(ev) {
+  $('#slide-1').hide();
+  $('#slide-0').show();
 });
