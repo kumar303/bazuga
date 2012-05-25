@@ -4,7 +4,7 @@ it's an html5 music player app
 
 ![Herbie UI in OS X](http://f.cl.ly/items/3Z3V1o112u1v3P0c1H1w/herbie-ui.png)
 
-This is the Herbie UI (in node.js)
+This repo holds the alluring node.js code for the UI layer.
 
 ## Installation Instructions for those who dare tread the dark path
 
