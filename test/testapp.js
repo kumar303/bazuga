@@ -8,12 +8,12 @@
  *       assert.equal(response.data['viewData'], 'expected');
  *     });
  */
-module.exports = function(routes) {
-  return new TestApp(routes);
+module.exports = function(routes, settings) {
+  return new TestApp(routes, settings);
 };
 
 
-function TestApp(routes) {
+function TestApp(routes, settings) {
   var self = this;
   this._routes = {post: {}, get: {}};
   app = {
@@ -24,7 +24,7 @@ function TestApp(routes) {
       self._routes.post[route] = fn;
     }
   };
-  routes(app);
+  routes(app, settings);
 }
 
 TestApp.prototype.get = function _get(route, req, callback) {

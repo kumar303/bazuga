@@ -1,9 +1,7 @@
-const TRACK_URL = 'http://localhost:8000/en-US/songs';
-
-var request = require('request');
+var api = require('../lib/api.js');
 var trackMgmt = require('../lib/track_mgmt');
 
-module.exports = function(app) {
+module.exports = function(app, settings) {
   // Main track page
   app.get('/', function(req, res) {
     res.render('index', { title: 'Herbie' });
@@ -11,7 +9,7 @@ module.exports = function(app) {
 
   // Get track list
   app.get('/tracks/list', function(req, res) {
-    request.get(TRACK_URL + '?email=' + escape(req.session.email),
+    api.get('/music/', {email: req.session.email}, settings,
       function(err, resp, body) {
         trackMgmt.getAll(req, body, function(err, tracks) {
           res.json({ tracks: tracks });

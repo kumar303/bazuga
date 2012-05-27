@@ -12,7 +12,7 @@ describe('trackMgmt', function() {
       };
 
       var body = {
-        songs: [{
+        tracks: [{
           artist: 'Aphex Twin',
           small_art_url: 'http://test.com/223.jpg',
           album_art_url: 'http://test.com/223.jpg',
@@ -23,10 +23,10 @@ describe('trackMgmt', function() {
       };
 
       trackMgmt.getAll(req, JSON.stringify(body), function(err, tracks) {
-        tracks[0].track.artist.should.equal(body.songs[0].artist);
-        tracks[0].track.album.should.equal(body.songs[0].album);
-        tracks[0].track.trackTitle.should.equal(body.songs[0].track);
-        tracks[0].track.trackSource.should.equal(body.songs[0].s3_urls.ogg);
+        tracks[0].track.artist.should.equal(body.tracks[0].artist);
+        tracks[0].track.album.should.equal(body.tracks[0].album);
+        tracks[0].track.trackTitle.should.equal(body.tracks[0].track);
+        tracks[0].track.trackSource.should.equal(body.tracks[0].s3_urls.ogg);
         tracks.length.should.equal(1);
       });
     });

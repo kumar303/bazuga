@@ -1,10 +1,12 @@
 var assert = require('should');
 var nock = require('nock');
-var jwt = require('jwt-simple');
+
+var api = require('../lib/api.js');
 var index = require('../routes/index.js');
 var testapp = require('./testapp.js');
 
-var app = testapp(index);
+var settings = {options: {apiDomain: 'http://server', apiSecret: 'secret', apiKey: 'key'}};
+var app = testapp(index, settings);
 
 describe('/tracks/list', function() {
   it('proxies a list of tracks', function() {
@@ -15,7 +17,7 @@ describe('/tracks/list', function() {
     };
 
     var body = {
-      songs: [{
+      tracks: [{
         artist: 'Aphex Twin',
         small_art_url: 'http://test.com/223.jpg',
         album_art_url: 'http://test.com/223.jpg',
@@ -25,8 +27,8 @@ describe('/tracks/list', function() {
       }]
     };
 
-    nock('http://localhost:8000')
-      .get('/en-US/songs?email=test@test.org')
+    nock('http://server')
+      .get('/music/?r=' + api.signRequest({email: req.session.email}, settings))
       .reply(200, JSON.stringify(body));
 
     app.get('/tracks/list', req, function(res) {

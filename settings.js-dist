@@ -2,11 +2,14 @@
 module.exports = function(app, configurations, express) {
   var clientSessions = require('client-sessions');
 
-  var options = { 
+  var options = {
     domain: 'http://localhost',
     port: 3000,
     authPort: 3000,
-    authUrl: 'https://browserid.org'
+    authUrl: 'https://browserid.org',
+    apiDomain: 'http://localhost:8000',
+    apiKey: '<key from rockit>',
+    apiSecret: '<secret from rockit>'
   };
 
   // Configuration
