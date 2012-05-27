@@ -3,7 +3,7 @@
  *
  * Usage:
  *     var testapp = require('testapp');
- *     var app = testapp(myRoutes);
+ *     var app = testapp(myRoutes, settings);
  *     app.get('/some/path', {queryParam: 'value'}, function(response) {
  *       assert.equal(response.data['viewData'], 'expected');
  *     });
