@@ -7,9 +7,9 @@ module.exports = function(app, configurations, express) {
     port: 3000,
     authPort: 3000,
     authUrl: 'https://browserid.org',
-    apiDomain: 'http://localhost:8000',
-    apiKey: '<key from rockit>',
-    apiSecret: '<secret from rockit>'
+    apiDomain: 'http://localhost:8000',  // rockit dev server
+    apiKey: 'herbie',  // API key
+    apiSecret: 'I once ate 9 tacos all in one go'  // API secret string
   };
 
   // Configuration
