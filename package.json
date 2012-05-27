@@ -11,6 +11,7 @@
     "connect": "1.8.7",
     "express": "2.5.8",
     "gravatar": "1.0.6",
+    "jwt-simple": ">= 0.1.0",
     "request": "2.9.153",
     "jade": ">= 0.26.0",
     "mocha": "0.14.1",
