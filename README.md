@@ -22,3 +22,18 @@ with audio data. Check the docs on rockit to see how to set up API
 authentication. When setting up a dev environment, you'll need
 [rockitlib](https://github.com/kumar303/rockitlib) to
 upload your MP3s.
+
+## Configuration
+
+To connect to
+[rockit](https://github.com/kumar303/rockit)
+(probably your local dev instance), you need rockit to grant you an API key and
+an API secret. Edit settings.js with those values. It will look something
+like this:
+
+    var options = {
+      // ...
+      apiDomain: 'http://localhost:8000',  // rockit dev server
+      apiKey: 'herbie',  // API key
+      apiSecret: 'I once ate 9 tacos all in one go'  // API secret string
+    };
