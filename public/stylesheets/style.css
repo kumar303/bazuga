@@ -1,4 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -12,8 +12,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
     margin: 0;
@@ -24,7 +24,7 @@ time, mark, audio, video {
     vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
     display: block;
 }
@@ -69,76 +69,6 @@ h1 {
 
 a {
     text-decoration: none;
-}
-
-#logo {
-    background-image: url('/images/logo.png');
-    background-repeat: no-repeat;
-    display: block;
-    height: 30px;
-    left: 10px;
-    position: absolute;
-    width: 17px;
-}
-
-#slide-0, #slide-1 {
-    width: 100%;
-}
-
-#slide-1 {
-    background-color: #f1f1f1;
-    display: none;
-    float: left;
-    padding: 60px 20px 20px 20px;
-}
-
-#slide-1 h2 {
-    font-size: 38px;
-    margin-bottom: 20px;
-}
-
-#slide-1 h3 {
-    color: #70777d;
-    font-size: 25px;
-    margin-bottom: 10px;
-}
-
-#slide-1 h2, #tracks li .artist-name {
-    font-size: 32px;
-    color: #70777d;
-    text-shadow: #fff 0px 1px 0px;
-    text-transform: uppercase;
-}
-
-.info {
-    float: left;
-    margin-left: 20px;
-    margin-top: 10px;
-    width: 80%;
-}
-
-.info img {
-    display: block;
-    float: left;
-    margin-bottom: 100px;
-    margin-right: 20px;
-    max-height: 128px;
-    max-width: 128px;
-}
-
-a.back {
-    background-image: url('/images/back.png');
-    background-position: -58px;
-    display: block;
-    float: left;
-    font-size: 1px;
-    height: 80px;
-    text-indent: -9999px;
-    width: 60px;
-}
-
-a.back:hover {
-    background-position: 0px;
 }
 
 #header {
@@ -339,4 +269,78 @@ a.back:hover {
     #gutter {
         width: 40%;
     }
+}
+
+
+/* Bazuga styles */
+
+.clear {
+    clear: both;
+}
+p.filler {
+    text-align: center;
+    padding: 1em;
+}
+
+#template {
+    display: none;
+}
+
+#game, #stash, #buy {
+    border-bottom: 1px solid;
+}
+
+#game {
+    padding-top: 60px;
+}
+
+.big-banana, .big-kiwi {
+    display: block;
+    width: 128px;
+    height: 128px;
+}
+
+.small-banana, .small-kiwi {
+    display: block;
+    width: 64px;
+    height: 64px;
+}
+
+.big-banana {
+    background-image: url('/images/Banana_128.png');
+}
+.small-banana {
+    background-image: url('/images/Banana_64.png');
+}
+
+.big-kiwi {
+    background-image: url('/images/kiwi_128.png');
+}
+.small-kiwi {
+    background-image: url('/images/kiwi_64.png');
+}
+
+#stash .pack {
+    width: 256px;
+    margin: 0 auto;
+}
+
+#stash .pack .small-banana {
+    float: left;
+}
+
+#buy .big-banana {
+}
+
+#buy .big-kiwi {
+}
+
+.buy-button {
+    float: left;
+    padding: 10px;
+}
+
+#buy button {
+    width: 128px;
+    display: block;
 }

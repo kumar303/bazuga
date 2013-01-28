@@ -1,14 +1,14 @@
 {
     "version": "1.0",
-    "name": "Herbie",
+    "name": "Bazuga!",
     "default_locale": "en-US",
     "icons": {
         "128": "/images/herbie.png"
     },
-    "description": "A music thing",
+    "description": "It's a super fun game of chance using real money!",
     "launch_path": "/",
     "developer": {
       "url": "http://localhost:3000",
-      "name": "Kumar and Jen"
+      "name": "Kumar McMillan"
     }
 }

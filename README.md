@@ -1,12 +1,8 @@
-# herbie
+# Bazuga!
 
-it's an html5 music player app
+It's a super fun game of chance using real money!
 
-![Herbie UI in OS X](http://f.cl.ly/items/3Z3V1o112u1v3P0c1H1w/herbie-ui.png)
-
-This repo holds the alluring node.js code for the UI layer.
-
-## Installation Instructions for those who dare tread the dark path
+## Install it
 
 1. Install node http://nodejs.org/
 
@@ -14,26 +10,4 @@ This repo holds the alluring node.js code for the UI layer.
 
 3. `cp settings.js-local settings.js`
 
-## Other parts
-
-The Herbie UI talks to
-[rockit](https://github.com/kumar303/rockit), the server to work
-with audio data. Check the docs on rockit to see how to set up API
-authentication. When setting up a dev environment, you'll need
-[rockitlib](https://github.com/kumar303/rockitlib) to
-upload your MP3s.
-
-## Configuration
-
-To connect to
-[rockit](https://github.com/kumar303/rockit)
-(probably your local dev instance), you need rockit to grant you an API key and
-an API secret. Edit settings.js with those values. It will look something
-like this:
-
-    var options = {
-      // ...
-      apiDomain: 'http://localhost:8000',  // rockit dev server
-      apiKey: 'herbie',  // API key
-      apiSecret: 'I once ate 9 tacos all in one go'  // API secret string
-    };
+4. `node app.js`

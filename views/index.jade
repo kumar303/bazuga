@@ -1,17 +1,25 @@
 extends layout
 
 block content
-  #slide-0
-    ol#tracks.list
-
-  #slide-1
-    .track-details-content
-      a(href='#', class='back') Back
-      .info
-        img(src='')
-        h2.artist Artist:
-          span
-        h3.album Album:
-          span
-        h3.title Track:
-          span 
+  #game
+    p.filler No game yet
+    .clear
+  #stash
+    p.filler Stash is empty! Buy some...
+    .clear
+  #buy
+    .buy-button
+      a.big-banana
+      button 4 for $0.99
+    .buy-button
+      a.big-kiwi
+      button 4 for $0.99
+    .clear
+  #template
+    #small-banana-tpl
+      a.small-banana
+    #small-kiwi-tpl
+      a.small-kiwi
+    #pack-tpl
+      div(class="pack")
+        .clear
