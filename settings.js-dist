@@ -7,9 +7,10 @@ module.exports = function(app, configurations, express) {
     port: 3000,
     authPort: 3000,
     authUrl: 'https://browserid.org',
-    apiDomain: 'http://localhost:8000',  // rockit dev server
-    apiKey: 'herbie',  // API key
-    apiSecret: 'I once ate 9 tacos all in one go'  // API secret string
+    mozPayKey: 'public id from marketplace.firefox.com',
+    mozPaySecret: 'secret from marketplace.firefox.com',
+    mozPayAudience: 'marketplace.firefox.com',
+    mozPayRoutePrefix: '/mozpay',
   };
 
   // Configuration
@@ -18,6 +19,7 @@ module.exports = function(app, configurations, express) {
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
     app.set('view options', { layout: false });
+    app.use(express.logger({format: 'dev'}));
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(express.static(__dirname + '/public'));

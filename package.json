@@ -1,6 +1,6 @@
 {
-  "name": "herbie",
-  "version": "0.0.2",
+  "name": "bazuga",
+  "version": "0.0.1",
   "private": true,
   "engines": {
     "node": ">= 0.6.17",
@@ -17,5 +17,8 @@
     "mocha": "0.14.1",
     "nock": ">= 0.12.2",
     "should": ">= 0.0.1"
+  },
+  "scripts": {
+    "test": "_mocha"
   }
 }

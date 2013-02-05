@@ -10,4 +10,6 @@ It's a super fun game of chance using real money!
 
 3. `cp settings.js-local settings.js`
 
-4. `node app.js`
+4. Run the server: `npm start`
+
+5. Run tests: `npm test`
