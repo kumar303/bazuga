@@ -23,6 +23,25 @@ var incomingJWT = {iss: 'marketplace.firefox.com',
 var pay = require('../lib/moz_inapp_pay.js');
 
 
+/*
+ * Make an incoming JWT notice with valid iat/exp timestamps.
+ * */
+function makeIncoming(customIn) {
+  var in_ = {};
+  _.extend(in_, incomingJWT);
+  if (customIn) {
+    _.extend(in_, customIn);
+  }
+  if (!in_.iat) {
+    in_.iat = pay.now();
+  }
+  if (!in_.exp) {
+    in_.exp = pay.now() + 3600;  // in 1hr
+  }
+  return in_;
+}
+
+
 describe('moz_inapp_pay.request', function() {
 
   before(function() {
@@ -70,25 +89,25 @@ describe('moz_inapp_pay.verify', function() {
   });
 
   it('should verify an incoming JWT', function() {
-    pay.verify(jwt.encode(incomingJWT, config.mozPaySecret));
+    pay.verify(jwt.encode(makeIncoming(), config.mozPaySecret));
   });
 
   it('should fail with the wrong signature', function() {
     (function() {
-      pay.verify(jwt.encode(incomingJWT, 'incorrect secret'));
+      pay.verify(jwt.encode(makeIncoming(), 'incorrect secret'));
     }).should.throwError('Signature verification failed');
   });
 
   it('should fail with a malformed JWT', function() {
     (function() {
-      pay.verify(jwt.encode(incomingJWT, config.mozPaySecret) + '.garbage');
+      pay.verify(jwt.encode(makeIncoming(), config.mozPaySecret) + '.garbage');
     }).should.throwError('Not enough or too many segments');
   });
 
   it('should require pre-configuration', function() {
     pay.configure(null);
     (function() {
-      pay.verify(jwt.encode(incomingJWT, config.mozPaySecret));
+      pay.verify(jwt.encode(makeIncoming(), config.mozPaySecret));
     }).should.throwError();
   });
 
@@ -186,8 +205,8 @@ describe('moz_inapp_pay.routes (handlers)', function() {
         });
     };
 
-    this.notice = function() {
-      return _.extend({}, incomingJWT, {response: {transactionID: 'webpay-123'}});
+    this.notice = function(customJWT) {
+      return _.extend({}, makeIncoming(customJWT), {response: {transactionID: 'webpay-123'}});
     };
   });
 
@@ -210,7 +229,7 @@ describe('moz_inapp_pay.routes (handlers)', function() {
   });
 
   it('must get a JWT with correct signature', function(done) {
-    this.postback({notice: jwt.encode(incomingJWT, 'wrong secret')}, function(res) {
+    this.postback({notice: jwt.encode(makeIncoming(), 'wrong secret')}, function(res) {
       res.status.should.equal(400);
       done();
     });
@@ -252,6 +271,26 @@ describe('moz_inapp_pay.routes (handlers)', function() {
     this.postback({notice: jwt.encode(notice, config.mozPaySecret)}, function(res) {
       res.status.should.equal(200);
       res.text.should.equal(notice.response.transactionID);
+      done();
+    });
+  });
+
+  it('must not get an expired JWT', function(done) {
+    var notice = this.notice();
+    notice.exp = pay.now() - 80;
+
+    this.postback({notice: jwt.encode(notice, config.mozPaySecret)}, function(res) {
+      res.status.should.equal(400);
+      done();
+    });
+  });
+
+  it('must not pre-process a JWT', function(done) {
+    var notice = this.notice();
+    notice.nbf = pay.now() + 360;  // not before...
+
+    this.postback({notice: jwt.encode(notice, config.mozPaySecret)}, function(res) {
+      res.status.should.equal(400);
       done();
     });
   });
