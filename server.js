@@ -2,7 +2,7 @@ var express = require('express');
 var configurations = module.exports;
 var app = express.createServer();
 var settings = require('./settings')(app, configurations, express);
-var pay = require('./lib/moz_inapp_pay');
+var pay = require('./lib/mozpay');
 
 // routes
 require('./routes')(app, settings);

@@ -20,7 +20,7 @@ var incomingJWT = {iss: 'marketplace.firefox.com',
                    // ...
                    request: payRequest};
 
-var pay = require('../lib/moz_inapp_pay.js');
+var pay = require('../lib/mozpay.js');
 
 
 /*
@@ -42,7 +42,7 @@ function makeIncoming(customIn) {
 }
 
 
-describe('moz_inapp_pay.request', function() {
+describe('mozpay.request', function() {
 
   before(function() {
     pay.configure(config);
@@ -82,7 +82,7 @@ describe('moz_inapp_pay.request', function() {
 });
 
 
-describe('moz_inapp_pay.verify', function() {
+describe('mozpay.verify', function() {
 
   before(function() {
     pay.configure(config);
@@ -114,7 +114,7 @@ describe('moz_inapp_pay.verify', function() {
 });
 
 
-describe('moz_inapp_pay.routes (config)', function() {
+describe('mozpay.routes (config)', function() {
 
   before(function() {
     pay.configure(config);
@@ -180,7 +180,7 @@ describe('moz_inapp_pay.routes (config)', function() {
 });
 
 
-describe('moz_inapp_pay.routes (handlers)', function() {
+describe('mozpay.routes (handlers)', function() {
 
   before(function() {
     var self = this;
