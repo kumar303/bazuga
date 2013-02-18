@@ -1,5 +1,6 @@
 var shouldBe = require('should');
 var express = require('express');
+var Gently = require('gently');
 var jwt = require('jwt-simple');
 var request = require('superagent');
 var _ = require('underscore');
@@ -117,62 +118,53 @@ describe('mozpay.routes (config)', function() {
 
   before(function() {
     pay.configure(config);
-
-    // TODO replace with a mocking lib? Having a hard time finding one.
-    this.app = function() {
-      return new function App() {
-        var _app = this;
-
-        this.post = function() {
-          _app.post.called = true;
-          var call = [];
-          for (var i=0; i<arguments.length; i++) {
-            call.push(arguments[i]);
-          }
-          _app.post.args.push(call);
-        };
-        this.post.called = false;
-        this.post.args = [];
-      };
+    this.app = {
+      post: function() {}
     };
+    this.gently = new Gently();
+  });
 
+  after(function() {
+    this.gently.verify();
   });
 
   it('should add a postback', function() {
-    var app = this.app();
-    pay.routes(app);
-    shouldBe.ok(app.post.called);
-    shouldBe.equal(app.post.args[0][0], '/mozpay/postback');
+    this.gently.expect(this.app, 'post', function(url) {
+      shouldBe.equal(url, '/mozpay/postback');
+    });
+    pay.routes(this.app);
   });
 
   it('should add a chargeback', function() {
-    var app = this.app();
-    pay.routes(app);
-    shouldBe.ok(app.post.called);
-    shouldBe.equal(app.post.args[1][0], '/mozpay/chargeback');
+    var count = 1;
+    this.gently.expect(this.app, 'post', 2, function(url) {
+      if (count == 2)
+        shouldBe.equal(url, '/mozpay/chargeback');
+      count++;
+    });
+    pay.routes(this.app);
   });
 
   it('should use a prefix', function() {
-    var app = this.app();
     pay.configure({mozPayRoutePrefix: '/foo'});
-    pay.routes(app);
-    shouldBe.ok(app.post.called);
-    shouldBe.equal(app.post.args[0][0], '/foo/postback');
+    this.gently.expect(this.app, 'post', function(url) {
+      shouldBe.equal(url, '/foo/postback');
+    });
+    pay.routes(this.app);
   });
 
   it('should clean the prefix', function() {
-    var app = this.app();
     pay.configure({mozPayRoutePrefix: '/foo/'});
-    pay.routes(app);
-    shouldBe.ok(app.post.called);
-    shouldBe.equal(app.post.args[0][0], '/foo/postback');
+    this.gently.expect(this.app, 'post', function(url) {
+      shouldBe.equal(url, '/foo/postback');
+    });
+    pay.routes(this.app);
   });
 
   it('cannot have a null prefix', function() {
-    var app = this.app();
     pay.configure({mozPayRoutePrefix: null});
     (function() {
-      pay.routes(app);
+      pay.routes(this.app);
     }).should.throwError();
   });
 
