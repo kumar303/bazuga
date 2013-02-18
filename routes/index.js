@@ -1,4 +1,4 @@
-var pay = require('../lib/mozpay');
+var pay = require('mozpay');
 
 module.exports = function(app, settings) {
   app.get('/', function(req, res) {
