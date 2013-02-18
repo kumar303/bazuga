@@ -1,7 +1,6 @@
 var shouldBe = require('should');
 var express = require('express');
 var jwt = require('jwt-simple');
-//var nock = require('nock');
 var request = require('superagent');
 var _ = require('underscore');
 
