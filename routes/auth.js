@@ -7,7 +7,7 @@ module.exports = function(app, settings) {
       if (email) {
         req.session.email = email;
       }
-      res.redirect('/');
+      res.send('OK');
     });
   });
 

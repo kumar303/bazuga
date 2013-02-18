@@ -71,218 +71,26 @@ a {
     text-decoration: none;
 }
 
-#header {
-    background: -moz-linear-gradient(center top , #eee, #fff) repeat scroll 50% 50% transparent;
-    box-shadow: #aaa 0px 0px 5px;
-    height: 30px;
-    opacity: 0.9;
-    padding: 5px;
-    position: fixed;
-    top: 0px;
-    width: 100%;
-    z-index: 2;
-}
-
-#header a {
-    color: #7f878d;
-    display: block;
-    float: right;
-    margin-right: 20px;
-    padding-top: 5px;
-    font-size: 20px;
-    text-transform: uppercase;
-}
-
-#tracks {
-    clear: both;
-    float: left;
-    font-size: 20px;
-    margin: 40px 0px 60px 0px;
-    position: relative;
-    width: 100%;
-}
-
-#tracks li {
-    float: left;
-    clear: both;
-    margin-bottom: 1px;
-    background-color: #eee;
-    border-bottom: 1px solid #ccc;
-    padding: 10px 0px 0px 0px;
-    position: relative;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%;
-}
-
-#tracks.list li {
-    cursor: pointer;
-}
-
-#tracks.list li.listening {
-    background-color: #fff;
-    cursor: default;
-}
-
-#tracks.list li:hover {
-    background-color: #cbd4dc;
-}
-
-#tracks.list li:hover .artist-name, #tracks.list li:hover .track-title {
-    color: #555;
-}
-
-#tracks.list li.listening:hover {
-    background-color: #fff;
-}
-
-#tracks li .track-info .image-wrapper {
-    display: block;
-    width: 70px;
-    height: 70px;
-    float: left;
-    margin-right: 15px;
-    margin-bottom: 10px;
-}
-
-#tracks li .track-info img {
-    display: block;
-    width: 70px;
-    float: left;
-    margin-right: 15px;
-    margin-bottom: 10px;
-}
-
-#tracks li .details {
-    float: left;
-}
-
-#tracks li .artist-name {
-    display: block;
-    float: left;
-    line-height: 38px;
-    margin-bottom: 15px;
-    margin-top: -5px;
-}
-
-#tracks li.listening .artist-name, #tracks li.listening .track-title {
-    color: #444;
-}
-
-#tracks li .track-title {
-    display: block;
-    clear: both;
-    font-size: 22px;
-    float: left;
-    color: #7f878d;
-}
-
-#tracks li .track-details {
-    background-image: url('/images/details.png');
-    background-repeat: no-repeat;
-    display: block;
-    float: right;
-    height: 80px;
-    margin-right: 10px;
-    margin-top: -5px;
-    position: relative;
-    text-indent: -9999px;
-    width: 60px;
-}
-
-#tracks li .track-details:hover {
-    background-position: -58px;
-}
-
-/* Audio Player */
-
-#player {
-    background: -moz-linear-gradient(center top , #eee, #999) repeat scroll 50% 50% transparent;
-    box-shadow: #aaa 0px 0px 5px;
-    bottom: 0px;
-    display: block;
-    height: 60px;
-    opacity: 0.95;
-    position: fixed;
-    width: 100%;
-}
-
-#playtoggle {
-    background-image: url('../images/play.png');
-    background-position: 0px;
-    background-repeat: no-repeat;
-    cursor: pointer;
-    height: 50px;
-    left: 13px;
-    position: absolute;
-    top: 5px;
-    width: 50px;
-}
-
-#playtoggle:hover {
-    opacity: 0.8;
-}
-
-#playtoggle.playing {
-    background-position: -50px;
-}
-
-#gutter {
-    background: -moz-linear-gradient(center top , #51565a, #6f757a) repeat scroll 0% 0% transparent;
-    border-radius: 2px;
-    height: 15px;
-    left: 80px;
-    position: absolute;
-    top: 21px;
-    width: 75%;
-}
-
-#handle {
-    background-color: #222;
-    border-radius: 2px;
-    box-shadow: #111 2px 2px 3px inset;
-    height: 15px;
-    left: 0px;
-    margin-left: -10px;
-    position: absolute;
-    top: 0px;
-    width: 17px;
-}
-
-#timeleft {
-    color: #52575b;
-    display: block;
-    font-size: 28px;
-    letter-spacing: 1px;
-    position: absolute;
-    right: -80px;
-    top: -9px;
-}
-
-@media only screen and (max-width: 600px) {
-    #gutter {
-        width: 65%;
-    }
-}
-
-@media only screen and (max-width: 500px) {
-    #gutter {
-        width: 40%;
-    }
-}
-
-
 /* Bazuga styles */
+
 
 .clear {
     clear: both;
 }
-p.filler {
+p {
     text-align: center;
     padding: 1em;
 }
 
 #template {
+    display: none;
+}
+
+#login-panel {
+    display: none;
+}
+
+#game-panel {
     display: none;
 }
 

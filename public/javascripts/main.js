@@ -1,13 +1,34 @@
 $(function() {
 
-  $('#login').click(function() {
-    // Move to id.watch() !
-    navigator.id.getVerifiedEmail(function(assertion) {
+  var data = $('body').data();
+
+  navigator.id.watch({
+    //loggedInUser: data.email,
+    onlogin: function(assertion) {
+      console.log('nav.id onlogin');
       if (assertion) {
-        $('form.login input[name="bid_assertion"]').val(assertion);
-        $('form.login').submit();
+        $.post(data.login, {bid_assertion: assertion})
+          .done(function(data, textStatus, jqXHR) {
+            console.log('login success; status=' + jqXHR.status);
+            $('#start').hide();
+            $('#login-panel').hide();
+            $('#game-panel').fadeIn();
+          })
+          .fail(function(jqXHR, textStatus, errorThrown) {
+            console.log('login fail: ' + errorThrown);
+          });
       }
-    });
+    },
+    onlogout: function() {
+      console.log('nav.id onlogout');
+      $('#start').hide();
+      $('#game-panel').hide();
+      $('#login-panel').fadeIn();
+    }
+  });
+
+  $('#login').click(function() {
+    navigator.id.request();
   });
 
   $('#buy button').click(function() {

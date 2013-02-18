@@ -1,20 +1,31 @@
 extends layout
 
 block content
-  #game
-    p.filler No game yet
-    .clear
-  #stash
-    p.filler Stash is empty! Buy some...
-    .clear
-  #buy
-    .buy-button
-      a.big-banana
-      button 4 for $0.99
-    .buy-button
-      a.big-kiwi
-      button 4 for $0.99
-    .clear
+
+  #start
+    p Loading...
+
+  #login-panel
+    p Get ready to play Bazuga!
+    p
+      a(href='#', id='login') Sign in
+
+  #game-panel
+    #game
+      p.filler No game yet
+      .clear
+    #stash
+      p.filler Stash is empty! Buy some...
+      .clear
+    #buy
+      .buy-button
+        a.big-banana
+        button 4 for $0.99
+      .buy-button
+        a.big-kiwi
+        button 4 for $0.99
+      .clear
+
   #template
     #small-banana-tpl
       a.small-banana
