@@ -7,7 +7,16 @@ module.exports = function(app, settings) {
 
   app.post('/jwt', function(req, res) {
     // TODO fetch product type from params.
-    res.send({jwt: pay.request({name: '..',
-                                description: '...'})});
+    var jwt = pay.request({
+      id: 'my-product:1',
+      name: 'Some Product',
+      description: 'description',
+      pricePoint: 1,
+      productData: '',
+      postbackURL: 'http://localhost:3000/mozpay/postback',
+      chargebackURL: 'http://localhost:3000/mozpay/chargeback'
+    });
+    console.log('Starting payment with: ' + jwt);
+    res.send({jwt: jwt});
   });
 }
