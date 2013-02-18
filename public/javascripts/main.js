@@ -33,7 +33,7 @@ $(function() {
 
   $('#buy button').click(function() {
     var $el = $(this);
-    var kind = $el.attr('class');
+    var kind = $el.data('kind');
     $.post('/jwt', {kind: kind})
       .done(function(data) {
         console.log(data.jwt);
@@ -62,8 +62,16 @@ $(function() {
     var $stash =  $('#stash');
     $('p', $stash).hide();
     var pack = $($('#pack-tpl').html());
+    var tplMap = {
+      banana: '#small-banana-tpl',
+      kiwi: '#small-kiwi-tpl'
+    };
+    var tpl = tplMap[kind];
+    if (!tpl) {
+      throw new Error('No template for kind: ' + kind);
+    }
     for (var i=0; i < 4; i++) {
-      pack.append($('#small-banana-tpl').html());
+      pack.append($(tpl).html());
     }
     $stash.prepend(pack);
   }

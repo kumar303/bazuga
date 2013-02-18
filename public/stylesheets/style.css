@@ -133,7 +133,8 @@ p {
     margin: 0 auto;
 }
 
-#stash .pack .small-banana {
+#stash .pack .small-banana,
+#stash .pack .small-kiwi {
     float: left;
 }
 
