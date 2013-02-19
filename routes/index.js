@@ -2,6 +2,7 @@ var pay = require('mozpay');
 var qs = require('qs');
 
 module.exports = function(app, settings) {
+
   app.get('/', function(req, res) {
     res.render('index', { title: 'Bazuga!' });
   });
@@ -11,7 +12,7 @@ module.exports = function(app, settings) {
     var name;
     if (kind === 'kiwi') {
       name = '4 Kiwis';
-    } else if (kind == 'banana') {
+    } else if (kind === 'banana') {
       name = '4 Bananas';
     } else {
       console.log('Received bad kind: ' + kind);

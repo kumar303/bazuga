@@ -4,10 +4,16 @@ module.exports = function(app, settings) {
   // Login
   app.post('/login', function(req, res) {
     auth.verify(req, settings, function(error, email) {
-      if (email) {
-        req.session.email = email;
+      if (error) {
+        console.log('BrowserID error: ' + error);
+        res.send(401);
+        return;
       }
-      res.send('OK');
+      email = email.toLowerCase();
+      req.session.email = email;
+      settings.client.hgetall(email + '.fruit', function(err, reply) {
+        res.json(reply || {});
+      });
     });
   });
 
