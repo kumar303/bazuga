@@ -7,9 +7,10 @@ module.exports = function(app, configurations, express) {
     port: 3000,
     authPort: 3000,
     authUrl: 'https://browserid.org',
-    mozPayKey: 'public id from marketplace.firefox.com',
-    mozPaySecret: 'secret from marketplace.firefox.com',
-    mozPayAudience: 'marketplace.firefox.com',
+    simulatePay: true,
+    mozPayKey: '<get this from the Firefox Marketplace Dev Hub>',
+    mozPaySecret: '<get this from the Firefox Marketplace Dev Hub>',
+    mozPayAudience: 'marketplace-dev.allizom.org',
     mozPayRoutePrefix: '/mozpay',
   };
 
@@ -24,7 +25,7 @@ module.exports = function(app, configurations, express) {
     app.use(express.methodOverride());
     app.use(express.static(__dirname + '/public'));
     app.use(clientSessions({
-      cookieName: 'session_herbie',
+      cookieName: 'session_bazuga',
       secret: 'secret', // MUST be set
       // true session duration:
       // will expire after duration (ms)
