@@ -4,7 +4,14 @@ var qs = require('qs');
 module.exports = function(app, settings) {
 
   app.get('/', function(req, res) {
-    res.render('index', { title: 'Bazuga!' });
+    //settings.client.flushdb();
+    var key = req.session.email ? req.session.email + '.fruit': '__none__';
+    settings.client.hgetall(key, function(err, reply) {
+      res.render('index', {
+        title: 'Bazuga!',
+        fruit: JSON.stringify(reply)
+      });
+    });
   });
 
   app.post('/jwt', function(req, res) {

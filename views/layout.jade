@@ -6,7 +6,8 @@ html
     link(rel='app-manifest', href='http://localhost:3000/manifest.webapp')
     link(rel='stylesheet', href='/stylesheets/style.css')
 
-  body(data-email=session.email, data-login='/login')
+  body(data-email=session.email, data-login='/login',
+       data-fruit=fruit)
 
     block content
 

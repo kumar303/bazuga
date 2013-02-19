@@ -12,7 +12,8 @@ module.exports = function(app, settings) {
       email = email.toLowerCase();
       req.session.email = email;
       settings.client.hgetall(email + '.fruit', function(err, reply) {
-        res.json(reply || {});
+        console.log(email + ' logged in');
+        res.json({fruit: reply || {}});
       });
     });
   });

@@ -10,9 +10,15 @@ $(function() {
         $.post(data.login, {bid_assertion: assertion})
           .done(function(data, textStatus, jqXHR) {
             console.log('login success; status=' + jqXHR.status);
+            console.log('login data:', data);
+
             $('#start').hide();
             $('#login-panel').hide();
             $('#game-panel').fadeIn();
+
+            if (data.fruit) {
+              addFruitData(data.fruit);
+            }
           })
           .fail(function(jqXHR, textStatus, errorThrown) {
             console.log('login fail: ' + errorThrown);
@@ -58,10 +64,23 @@ $(function() {
       });
   });
 
-  function addFruit(kind) {
+  // On startup, re-up the logged in user's purchased fruit.
+  if (data.fruit) {
+    addFruitData(data.fruit);
+  }
+
+  function addFruitData(fruit) {
+    for (var kind in fruit) {
+      addFruit(kind, fruit[kind]);
+    }
+  }
+
+  function addFruit(kind, num) {
+    var pack;
+    if (!num)
+      num = 4;  // A pack of fruit.
     var $stash =  $('#stash');
     $('p', $stash).hide();
-    var pack = $($('#pack-tpl').html());
     var tplMap = {
       banana: '#small-banana-tpl',
       kiwi: '#small-kiwi-tpl'
@@ -70,9 +89,16 @@ $(function() {
     if (!tpl) {
       throw new Error('No template for kind: ' + kind);
     }
-    for (var i=0; i < 4; i++) {
-      pack.append($(tpl).html());
+
+    // Add purchased fruit in packs for four.
+    var numPacks = Math.ceil(num / 4);
+    var total = num;
+    for (var pk=0; pk < numPacks; pk++) {
+      pack = $($('#pack-tpl').html());
+      for (; total > 0; total--) {
+        pack.append($(tpl).html());
+      }
+      $stash.prepend(pack);
     }
-    $stash.prepend(pack);
   }
 });
