@@ -10,7 +10,8 @@ module.exports = function(app, configurations, express) {
     simulatePay: true,
     mozPayKey: '<get this from the Firefox Marketplace Dev Hub>',
     mozPaySecret: '<get this from the Firefox Marketplace Dev Hub>',
-    mozPayAudience: 'marketplace-dev.allizom.org',
+    mozPayAudience: 'localhost',
+    mozPayType: 'mozilla-local/payments/pay/v1',
     mozPayRoutePrefix: '/mozpay',
   };
 
