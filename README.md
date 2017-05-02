@@ -1,5 +1,7 @@
 # Bazuga!
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/kumar303/bazuga.svg)](https://greenkeeper.io/)
+
 It's a super fun game of chance using real money!
 
 ## Install it
